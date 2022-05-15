@@ -36,12 +36,6 @@
             this.comboBoxSerie = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnInserir = new System.Windows.Forms.Button();
-            this.panelQuestoes = new System.Windows.Forms.Panel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonAdicionar = new System.Windows.Forms.ToolStripButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panelQuestoes.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -100,7 +94,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(463, 455);
+            this.btnCancelar.Location = new System.Drawing.Point(178, 181);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(73, 47);
             this.btnCancelar.TabIndex = 11;
@@ -110,7 +104,7 @@
             // btnInserir
             // 
             this.btnInserir.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnInserir.Location = new System.Drawing.Point(369, 455);
+            this.btnInserir.Location = new System.Drawing.Point(84, 181);
             this.btnInserir.Name = "btnInserir";
             this.btnInserir.Size = new System.Drawing.Size(73, 47);
             this.btnInserir.TabIndex = 10;
@@ -118,49 +112,11 @@
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
-            // panelQuestoes
-            // 
-            this.panelQuestoes.Controls.Add(this.toolStrip1);
-            this.panelQuestoes.Location = new System.Drawing.Point(15, 190);
-            this.panelQuestoes.Name = "panelQuestoes";
-            this.panelQuestoes.Size = new System.Drawing.Size(427, 241);
-            this.panelQuestoes.TabIndex = 13;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonAdicionar});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(427, 33);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButtonAdicionar
-            // 
-            this.toolStripButtonAdicionar.Image = global::Testes.WinApp.Properties.Resources.add_box_FILL0_wght400_GRAD0_opsz48;
-            this.toolStripButtonAdicionar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAdicionar.Name = "toolStripButtonAdicionar";
-            this.toolStripButtonAdicionar.Padding = new System.Windows.Forms.Padding(5);
-            this.toolStripButtonAdicionar.Size = new System.Drawing.Size(88, 30);
-            this.toolStripButtonAdicionar.Text = "Adicionar";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 174);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Questões:";
-            // 
             // TelaCadastroMateriaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 521);
-            this.Controls.Add(this.panelQuestoes);
-            this.Controls.Add(this.label4);
+            this.ClientSize = new System.Drawing.Size(284, 257);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnInserir);
             this.Controls.Add(this.comboBoxSerie);
@@ -172,10 +128,6 @@
             this.Name = "TelaCadastroMateriaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Materias";
-            this.panelQuestoes.ResumeLayout(false);
-            this.panelQuestoes.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,9 +143,5 @@
         private System.Windows.Forms.ComboBox comboBoxSerie;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnInserir;
-        private System.Windows.Forms.Panel panelQuestoes;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonAdicionar;
-        private System.Windows.Forms.Label label4;
     }
 }

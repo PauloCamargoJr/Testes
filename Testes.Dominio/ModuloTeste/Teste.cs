@@ -26,6 +26,13 @@ namespace Testes.Dominio.ModuloTeste
             
         }
 
+        public Teste()
+        {
+
+            Questoes = new List<Questao>();
+
+        }
+
         public override string ToString()
         {
             return $"Número: {Numero}, Titulo: {Titulo}, Disciplina: {Disciplina}, Matéria: {Materia}, Data: {Data.ToShortDateString()}";

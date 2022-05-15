@@ -37,6 +37,26 @@ namespace Testes.WinApp.ModuloQuestao
             return grid.SelecionarNumero<int>();
         }
 
+        public Questao obterQuestaoSelecionada(List<Questao> questoes)
+        {
+
+            int numeroQuestao = ObtemNumeroQuestoesSelecionado();
+
+            foreach (var item in questoes)
+            {
+
+                if(item.Numero == numeroQuestao)
+                {
+
+                    return item;
+
+                }
+            }
+
+            return null;
+
+        }
+
         public void AtualizarRegistros(List<Questao> Questoes)
         {
             grid.Rows.Clear();

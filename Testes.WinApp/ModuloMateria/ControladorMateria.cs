@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Testes.Dominio.ModuloDisciplina;
 using Testes.Dominio.ModuloMateria;
+using Testes.Dominio.ModuloQuestao;
 using Testes.Infra;
 using Testes.WinApp.Compartilhado;
 
@@ -14,15 +16,14 @@ namespace Testes.WinApp.ModuloMateria
     {
 
         private readonly IRepositorioMateria repositorioMateria;
+        IRepositorioDisciplina repositorioDisciplina;
         private ListagemMateriasControl listagemMaterias;
-        DataContext dataContext;
 
-        public ControladorMateria(IRepositorioMateria repositorio, DataContext dataContext)
+        public ControladorMateria(IRepositorioMateria repositorio, IRepositorioDisciplina _repositorioDisciplina)
         {
 
             repositorioMateria = repositorio;
-            this.dataContext = dataContext;
-
+            repositorioDisciplina = _repositorioDisciplina;
         }
 
         public override void Editar()
@@ -37,7 +38,7 @@ namespace Testes.WinApp.ModuloMateria
                 return;
             }
 
-            TelaCadastroMateriaForm tela = new TelaCadastroMateriaForm(dataContext);
+            TelaCadastroMateriaForm tela = new TelaCadastroMateriaForm(repositorioDisciplina);
 
             tela.Materia = MateriaSelecionada;
 
@@ -77,7 +78,7 @@ namespace Testes.WinApp.ModuloMateria
 
         public override void Inserir()
         {
-            TelaCadastroMateriaForm tela = new TelaCadastroMateriaForm(dataContext);
+            TelaCadastroMateriaForm tela = new TelaCadastroMateriaForm(repositorioDisciplina);
 
             tela.Materia = new Materia();
 
@@ -100,7 +101,7 @@ namespace Testes.WinApp.ModuloMateria
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolboxMateria();
         }
 
         public override UserControl ObtemListagem()

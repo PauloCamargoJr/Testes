@@ -14,6 +14,7 @@ namespace Testes.Dominio.ModuloMateria
 
         public string Nome { get; set; }
         public Disciplina Disciplina { get; set; }
+        public Questao Questao { get; set; }
         public List<Questao> Questoes { get; set; }
         public SerieEnum Serie { get; set; }
 
@@ -28,7 +29,6 @@ namespace Testes.Dominio.ModuloMateria
         {
             return $"Número: {Numero}, Nome: {Nome}, Disciplina: {Disciplina}, Série: {Serie}";
         }
-
     }
 
     public enum SerieEnum
@@ -37,5 +37,4 @@ namespace Testes.Dominio.ModuloMateria
         Primeira, Segunda
 
     }
-
 }

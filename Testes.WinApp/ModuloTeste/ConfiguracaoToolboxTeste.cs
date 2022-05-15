@@ -16,5 +16,15 @@ namespace Testes.WinApp.ModuloTeste
         public override string TooltipEditar => "Editar um Teste existente";
 
         public override string TooltipExcluir => "Excluir um Teste existente";
+
+        public override string TooltipDuplicar => "Duplicar um Teste existente";
+
+        public override string TooltipPDF => "Gerar PDF de um Teste existente";
+
+        public override bool EditarHabilitado => false;
+
+        public override bool DuplicarHabilitado => true;
+
+        public override bool PDFHabilitado => true;
     }
 }

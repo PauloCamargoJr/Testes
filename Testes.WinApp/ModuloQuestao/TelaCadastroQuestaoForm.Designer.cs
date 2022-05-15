@@ -37,6 +37,7 @@
             this.btnAdicionarAlternativa = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnInserir = new System.Windows.Forms.Button();
+            this.checkBoxCorreta = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -99,6 +100,7 @@
             this.btnAdicionarAlternativa.TabIndex = 7;
             this.btnAdicionarAlternativa.Text = "Adicionar alternativa";
             this.btnAdicionarAlternativa.UseVisualStyleBackColor = true;
+            this.btnAdicionarAlternativa.Click += new System.EventHandler(this.btnAdicionarAlternativa_Click);
             // 
             // btnCancelar
             // 
@@ -121,11 +123,22 @@
             this.btnInserir.UseVisualStyleBackColor = true;
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click_1);
             // 
+            // checkBoxCorreta
+            // 
+            this.checkBoxCorreta.AutoSize = true;
+            this.checkBoxCorreta.Location = new System.Drawing.Point(168, 327);
+            this.checkBoxCorreta.Name = "checkBoxCorreta";
+            this.checkBoxCorreta.Size = new System.Drawing.Size(113, 17);
+            this.checkBoxCorreta.TabIndex = 10;
+            this.checkBoxCorreta.Text = "Alternativa Correta";
+            this.checkBoxCorreta.UseVisualStyleBackColor = true;
+            // 
             // TelaCadastroQuestaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(431, 433);
+            this.Controls.Add(this.checkBoxCorreta);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnInserir);
             this.Controls.Add(this.btnAdicionarAlternativa);
@@ -154,5 +167,6 @@
         private System.Windows.Forms.Button btnAdicionarAlternativa;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnInserir;
+        private System.Windows.Forms.CheckBox checkBoxCorreta;
     }
 }

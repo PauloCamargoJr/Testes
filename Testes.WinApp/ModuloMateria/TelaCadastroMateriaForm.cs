@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Testes.Dominio.ModuloDisciplina;
 using Testes.Dominio.ModuloMateria;
+using Testes.Dominio.ModuloQuestao;
 using Testes.Infra;
 using Testes.WinApp.ModuloDisciplina;
 using Testes.WinApp.ModuloQuestao;
@@ -20,10 +21,10 @@ namespace Testes.WinApp.ModuloMateria
     {
 
         List<Disciplina> disciplinas;
-        public TelaCadastroMateriaForm(DataContext dataContext)
+        public TelaCadastroMateriaForm(IRepositorioDisciplina repositorioDisciplina)
         {
             InitializeComponent();
-            disciplinas = dataContext.Disciplinas;
+            disciplinas = repositorioDisciplina.SelecionarTodos();
             foreach (var item in disciplinas)
             {
 
@@ -31,7 +32,6 @@ namespace Testes.WinApp.ModuloMateria
 
             }
             ;
-
         }
 
         private Materia materia;
@@ -49,6 +49,7 @@ namespace Testes.WinApp.ModuloMateria
                 txtNome.Text = materia.Nome;
                 comboBoxDisicplina.SelectedItem = materia.Disciplina;
                 comboBoxSerie.SelectedItem = materia.Serie;
+
             }
         }
 
@@ -80,11 +81,8 @@ namespace Testes.WinApp.ModuloMateria
             {
                 string primeiroErro = resultadoValidacao.Errors[0].ErrorMessage;
 
-                //TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
-
                 DialogResult = DialogResult.None;
             }
-
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Testes.Dominio.ModuloMateria;
 using Testes.Dominio.ModuloQuestao;
 using Testes.Infra;
 using Testes.WinApp.Compartilhado;
@@ -15,13 +16,13 @@ namespace Testes.WinApp.ModuloQuestao
 
         private readonly IRepositorioQuestao repositorioQuestao;
         private ListagemQuestoesControl listagemQuestoes;
-        DataContext dataContext;
+        IRepositorioMateria repositorioMateria;
 
-        public ControladorQuestao(IRepositorioQuestao repositorio, DataContext dataContext)
+        public ControladorQuestao(IRepositorioQuestao repositorio, IRepositorioMateria _repositorioMateria)
         {
 
             repositorioQuestao = repositorio;
-            this.dataContext = dataContext;
+            repositorioMateria = _repositorioMateria;
 
         }
 
@@ -37,7 +38,7 @@ namespace Testes.WinApp.ModuloQuestao
                 return;
             }
 
-            TelaCadastroQuestaoForm tela = new TelaCadastroQuestaoForm(dataContext);
+            TelaCadastroQuestaoForm tela = new TelaCadastroQuestaoForm(repositorioMateria);
 
             tela.Questao = QuestaoSelecionada;
 
@@ -72,12 +73,11 @@ namespace Testes.WinApp.ModuloQuestao
                 repositorioQuestao.Excluir(QuestaoSelecionada);
                 CarregarQuestaos();
             }
-
         }
 
         public override void Inserir()
         {
-            TelaCadastroQuestaoForm tela = new TelaCadastroQuestaoForm(dataContext);
+            TelaCadastroQuestaoForm tela = new TelaCadastroQuestaoForm(repositorioMateria);
 
             tela.Questao = new Questao();
 
@@ -100,7 +100,7 @@ namespace Testes.WinApp.ModuloQuestao
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolboxQuestao();
         }
 
         public override UserControl ObtemListagem()

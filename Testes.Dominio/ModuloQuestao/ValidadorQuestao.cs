@@ -14,6 +14,14 @@ namespace Testes.Dominio.ModuloQuestao
             RuleFor(x => x.Enunciado)
                 .NotNull()
                 .NotEmpty();
+
+            RuleFor(x => x.Materia)
+                .NotNull()
+                .NotEmpty();
+
+            RuleFor(x => x.Alternativas)
+                .NotNull()
+                .NotEmpty();
         }
     }
 }

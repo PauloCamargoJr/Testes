@@ -38,7 +38,10 @@
             this.btnInserir = new System.Windows.Forms.ToolStripButton();
             this.btnEditar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
+            this.btnDuplicar = new System.Windows.Forms.ToolStripButton();
+            this.btnPDF = new System.Windows.Forms.ToolStripButton();
             this.panelRegistros = new System.Windows.Forms.Panel();
+            this.labelTipoCadastro = new System.Windows.Forms.Label();
             this.toolbox.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -97,10 +100,12 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnInserir,
             this.btnEditar,
-            this.btnExcluir});
+            this.btnExcluir,
+            this.btnDuplicar,
+            this.btnPDF});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(664, 33);
+            this.toolStrip1.Size = new System.Drawing.Size(664, 35);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -109,8 +114,8 @@
             this.btnInserir.Image = global::Testes.WinApp.Properties.Resources.add_box_FILL0_wght400_GRAD0_opsz48;
             this.btnInserir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnInserir.Name = "btnInserir";
-            this.btnInserir.Padding = new System.Windows.Forms.Padding(5);
-            this.btnInserir.Size = new System.Drawing.Size(69, 30);
+            this.btnInserir.Padding = new System.Windows.Forms.Padding(6);
+            this.btnInserir.Size = new System.Drawing.Size(71, 32);
             this.btnInserir.Text = "Inserir";
             this.btnInserir.Click += new System.EventHandler(this.btnInserir_Click);
             // 
@@ -119,8 +124,8 @@
             this.btnEditar.Image = global::Testes.WinApp.Properties.Resources.edit_FILL0_wght400_GRAD0_opsz48;
             this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Padding = new System.Windows.Forms.Padding(5);
-            this.btnEditar.Size = new System.Drawing.Size(67, 30);
+            this.btnEditar.Padding = new System.Windows.Forms.Padding(6);
+            this.btnEditar.Size = new System.Drawing.Size(69, 32);
             this.btnEditar.Text = "Editar";
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
@@ -129,10 +134,30 @@
             this.btnExcluir.Image = global::Testes.WinApp.Properties.Resources.delete_FILL0_wght400_GRAD0_opsz48;
             this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Padding = new System.Windows.Forms.Padding(5);
-            this.btnExcluir.Size = new System.Drawing.Size(72, 30);
+            this.btnExcluir.Padding = new System.Windows.Forms.Padding(6);
+            this.btnExcluir.Size = new System.Drawing.Size(74, 32);
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
+            // btnDuplicar
+            // 
+            this.btnDuplicar.Image = global::Testes.WinApp.Properties.Resources.content_copy_FILL0_wght400_GRAD0_opsz48;
+            this.btnDuplicar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDuplicar.Name = "btnDuplicar";
+            this.btnDuplicar.Padding = new System.Windows.Forms.Padding(6);
+            this.btnDuplicar.Size = new System.Drawing.Size(83, 32);
+            this.btnDuplicar.Text = "Duplicar";
+            this.btnDuplicar.Click += new System.EventHandler(this.btnDuplicar_Click);
+            // 
+            // btnPDF
+            // 
+            this.btnPDF.Image = global::Testes.WinApp.Properties.Resources.picture_as_pdf_FILL0_wght400_GRAD0_opsz48;
+            this.btnPDF.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPDF.Name = "btnPDF";
+            this.btnPDF.Padding = new System.Windows.Forms.Padding(6);
+            this.btnPDF.Size = new System.Drawing.Size(60, 32);
+            this.btnPDF.Text = "PDF";
+            this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
             // 
             // panelRegistros
             // 
@@ -141,11 +166,20 @@
             this.panelRegistros.Size = new System.Drawing.Size(640, 408);
             this.panelRegistros.TabIndex = 2;
             // 
+            // labelTipoCadastro
+            // 
+            this.labelTipoCadastro.AutoSize = true;
+            this.labelTipoCadastro.Location = new System.Drawing.Point(456, 40);
+            this.labelTipoCadastro.Name = "labelTipoCadastro";
+            this.labelTipoCadastro.Size = new System.Drawing.Size(0, 13);
+            this.labelTipoCadastro.TabIndex = 3;
+            // 
             // TelaPrincipalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(664, 480);
+            this.Controls.Add(this.labelTipoCadastro);
             this.Controls.Add(this.panelRegistros);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.toolbox);
@@ -175,6 +209,9 @@
         private System.Windows.Forms.ToolStripButton btnEditar;
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.Panel panelRegistros;
+        private System.Windows.Forms.ToolStripButton btnDuplicar;
+        private System.Windows.Forms.ToolStripButton btnPDF;
+        private System.Windows.Forms.Label labelTipoCadastro;
     }
 }
 

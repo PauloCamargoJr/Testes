@@ -17,18 +17,20 @@ namespace Testes.WinApp.ModuloQuestao
     public partial class TelaCadastroQuestaoForm : Form
     {
         List<Materia> materias;
-        public TelaCadastroQuestaoForm(DataContext dataContext)
+        AlternativaQuestao alternativa;
+
+        public TelaCadastroQuestaoForm(IRepositorioMateria repositorioMateria)
         {
             InitializeComponent();
-            materias = dataContext.Materias;
+
+            materias = repositorioMateria.SelecionarTodos();
+            alternativa = new AlternativaQuestao();
             foreach (var item in materias)
             {
 
                 comboBoxMateria.Items.Add(item.Nome);
 
             }
-            ;
-
         }
 
         private Questao questao;
@@ -45,6 +47,9 @@ namespace Testes.WinApp.ModuloQuestao
 
                 txtEnunciado.Text = questao.Enunciado;
                 comboBoxMateria.SelectedItem = questao.Materia;
+                //txtAlternnativas.Text = alternativa.Enunciado;
+                //checkBoxCorreta.Checked = alternativa.AlternativaCorreta;
+
             }
         }
 
@@ -53,7 +58,6 @@ namespace Testes.WinApp.ModuloQuestao
         private void btnInserir_Click(object sender, EventArgs e)
         {
 
-            
 
         }
 
@@ -75,12 +79,26 @@ namespace Testes.WinApp.ModuloQuestao
             {
                 string primeiroErro = resultadoValidacao.Errors[0].ErrorMessage;
 
-                //TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
-
-
                 DialogResult = DialogResult.None;
             }
+        }
 
+        private void btnAdicionarAlternativa_Click(object sender, EventArgs e)
+        {
+
+            AlternativaQuestao alternativa = new AlternativaQuestao();
+            
+
+            alternativa.Enunciado = txtAlternnativas.Text;
+            alternativa.AlternativaCorreta = checkBoxCorreta.Checked;
+            
+            if(questao.Alternativas != null)
+            {
+
+                questao.Alternativas.Add(alternativa);
+                txtAlternnativas.Clear();
+
+            }
         }
     }
 }

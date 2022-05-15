@@ -14,13 +14,9 @@ namespace Testes.WinApp.Compartilhado
         public abstract void Editar();
         public abstract void Excluir();
 
-        public virtual void AdicionarItens() { }
+        public virtual void Duplicar() { }
 
-        public virtual void AtualizarItens() { }
-
-        public virtual void Filtrar() { }
-
-        public virtual void Agrupar() { }
+        public virtual void GerarPDF() { }
 
         public abstract UserControl ObtemListagem();
 

@@ -17,13 +17,9 @@ namespace Testes.WinApp.Compartilhado
 
         public abstract string TooltipExcluir { get; }
 
-        public virtual string TooltipAdicionarItens { get; }
+        public virtual string TooltipDuplicar { get; }
 
-        public virtual string TooltipAtualizarItens { get; }
-
-        public virtual string TooltipFiltrar { get; }
-
-        public virtual string TooltipAgrupar { get; }
+        public virtual string TooltipPDF { get; }
 
 
         public virtual bool InserirHabilitado { get { return true; } }
@@ -32,13 +28,9 @@ namespace Testes.WinApp.Compartilhado
 
         public virtual bool ExcluirHabilitado { get { return true; } }
 
-        public virtual bool AdicionarItensHabilitado { get { return false; } }
+        public virtual bool DuplicarHabilitado { get { return false; } }
 
-        public virtual bool AtualizarItensHabilitado { get { return false; } }
-
-        public virtual bool FiltrarHabilitado { get { return false; } }
-
-        public virtual bool AgruparHabilitado { get { return false; } }
+        public virtual bool PDFHabilitado { get { return false; } }
 
     }
 }

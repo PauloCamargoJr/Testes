@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Testes.Dominio.ModuloDisciplina;
 using Testes.Dominio.ModuloMateria;
+using Testes.Dominio.ModuloQuestao;
 using Testes.Dominio.ModuloTeste;
 using Testes.Infra;
 
@@ -19,11 +20,13 @@ namespace Testes.WinApp.ModuloTeste
     {
         List<Materia> materias;
         List<Disciplina> disciplinas;
-        public TelaCadastroTesteForm(DataContext dataContext)
+        List<Questao> questoes;
+        public TelaCadastroTesteForm(IRepositorioMateria repositorioMateria, IRepositorioDisciplina repositorioDisciplina, IRepositorioQuestao repositorioQuestao)
         {
             InitializeComponent();
-            materias = dataContext.Materias;
-            disciplinas = dataContext.Disciplinas;
+            materias = repositorioMateria.SelecionarTodos();
+            disciplinas = repositorioDisciplina.SelecionarTodos();
+            questoes = repositorioQuestao.SelecionarTodos();
             foreach (var item in materias)
             {
 
@@ -37,7 +40,6 @@ namespace Testes.WinApp.ModuloTeste
 
             }
             ;
-
         }
 
         private Teste teste;
@@ -84,6 +86,8 @@ namespace Testes.WinApp.ModuloTeste
 
             Teste.Data = DateTime.Now;
 
+            Teste.Questoes = ObterQuestoes();
+
 
             ValidationResult resultadoValidacao = GravarRegistro(Teste);
 
@@ -91,11 +95,34 @@ namespace Testes.WinApp.ModuloTeste
             {
                 string primeiroErro = resultadoValidacao.Errors[0].ErrorMessage;
 
-                //TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
-
                 DialogResult = DialogResult.None;
             }
+        }
 
+        private List<Questao> ObterQuestoes()
+        {
+            var rnd = new Random();
+            var randomized = questoes.OrderBy(item => rnd.Next());
+            List<Questao> questoesTeste = new List<Questao>();
+            int contador = 0;
+
+            foreach (var item in randomized)
+            {
+
+                if (item.Materia == Teste.Materia)
+                {
+
+                    questoesTeste.Add(item);
+                    contador++;
+
+                }
+
+                if (contador == Teste.NumeroQuestoes)
+                    break;
+
+            }
+
+            return questoesTeste;
         }
     }
 }

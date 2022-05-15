@@ -97,7 +97,7 @@ namespace Testes.WinApp.ModuloDisciplina
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolboxDisciplina();
         }
 
         public override UserControl ObtemListagem()

@@ -14,12 +14,19 @@ namespace Testes.Dominio.ModuloQuestao
         public string Enunciado { get; set; }
         public Materia Materia { get; set; }
         public List<AlternativaQuestao> Alternativas { get; set; }
-
         public override void Atualizar(Questao registro)
         {
             
 
 
         }
+
+        public Questao()
+        {
+
+            Alternativas = new List<AlternativaQuestao>();
+
+        }
+
     }
 }

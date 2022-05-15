@@ -30,6 +30,7 @@ namespace Testes.WinApp
         public TelaPrincipalForm(DataContext contextoDados)
         {
             InitializeComponent();
+            DesativarBotoes();
 
             Instancia = this;
 
@@ -85,14 +86,47 @@ namespace Testes.WinApp
 
             controlador = controladores[tipo];
 
-            //ConfigurarToolbox();
+            ConfigurarToolbox();
 
             ConfigurarListagem();
         }
 
+        private void ConfigurarToolbox()
+        {
+            ConfiguracaoToolboxBase configuracao = controlador.ObtemConfiguracaoToolbox();
+
+            if (configuracao != null)
+            {
+                toolbox.Enabled = true;
+
+                labelTipoCadastro.Text = configuracao.TipoCadastro;
+
+                ConfigurarTooltips(configuracao);
+
+                ConfigurarBotoes(configuracao);
+            }
+        }
+
+        private void ConfigurarBotoes(ConfiguracaoToolboxBase configuracao)
+        {
+            btnInserir.Enabled = configuracao.InserirHabilitado;
+            btnEditar.Enabled = configuracao.EditarHabilitado;
+            btnExcluir.Enabled = configuracao.ExcluirHabilitado;
+            btnDuplicar.Enabled = configuracao.DuplicarHabilitado;
+            btnPDF.Enabled = configuracao.PDFHabilitado;
+        }
+
+        private void ConfigurarTooltips(ConfiguracaoToolboxBase configuracao)
+        {
+            btnInserir.ToolTipText = configuracao.TooltipInserir;
+            btnEditar.ToolTipText = configuracao.TooltipEditar;
+            btnExcluir.ToolTipText = configuracao.TooltipExcluir;
+            btnDuplicar.ToolTipText = configuracao.TooltipDuplicar;
+            btnPDF.ToolTipText = configuracao.TooltipPDF;
+        }
+
         private void ConfigurarListagem()
         {
-            //AtualizarRodape("Disciplinas");
 
             var listagemControl = controlador.ObtemListagem();
 
@@ -103,22 +137,13 @@ namespace Testes.WinApp
             panelRegistros.Controls.Add(listagemControl);
         }
 
-        private void CarregarListagem()
+        private void DesativarBotoes()
         {
-            var listagemControl = controlador.ObtemListagem();
-
-            panelRegistros.Controls.Clear();
-
-            listagemControl.Dock = DockStyle.Fill;
-
-            panelRegistros.Controls.Add(listagemControl);
-        }
-
-        private void SelecionarControlador(ToolStripMenuItem opcaoSelecionada)
-        {
-            var tipo = opcaoSelecionada.Text;
-
-            controlador = controladores[tipo];
+            btnInserir.Enabled = false;
+            btnEditar.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnDuplicar.Enabled = false;
+            btnPDF.Enabled = false;
         }
 
         public void InicializarControladores()
@@ -132,9 +157,9 @@ namespace Testes.WinApp
             controladores = new Dictionary<string, ControladorBase>();
 
             controladores.Add("Disciplinas", new ControladorDisciplina(repositorioDisciplina));
-            controladores.Add("Matérias", new ControladorMateria(repositorioMateria, contextoDados));
-            controladores.Add("Questões", new ControladorQuestao(repositorioQuestao, contextoDados));
-            controladores.Add("Testes", new ControladorTeste(repositorioTeste, contextoDados));
+            controladores.Add("Matérias", new ControladorMateria(repositorioMateria, repositorioDisciplina));
+            controladores.Add("Questões", new ControladorQuestao(repositorioQuestao, repositorioMateria));
+            controladores.Add("Testes", new ControladorTeste(repositorioTeste, repositorioMateria, repositorioDisciplina, repositorioQuestao));
 
 
         }
@@ -150,6 +175,20 @@ namespace Testes.WinApp
         {
 
             controlador.Excluir();
+
+        }
+
+        private void btnDuplicar_Click(object sender, EventArgs e)
+        {
+
+            controlador.Duplicar();
+
+        }
+
+        private void btnPDF_Click(object sender, EventArgs e)
+        {
+
+            controlador.GerarPDF();
 
         }
     }
