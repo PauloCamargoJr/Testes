@@ -41,6 +41,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.8.3\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BancoDeDados\ModuloDisciplina\RepositorioDisciplinaBancoDeDados.cs" />
+    <Compile Include="BancoDeDados\ModuloMateria\RepositorioMateriaBancoDeDados.cs" />
+    <Compile Include="BancoDeDados\ModuloQuestao\RepositorioQuestaoBancoDeDados.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Compartilhado\DataContext.cs" />
     <Compile Include="ModuloDisciplina\RepositorioDisciplina.cs" />
@@ -88,6 +94,8 @@
       <Name>Testes.Dominio</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BancoDeDados\ModuloTeste\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

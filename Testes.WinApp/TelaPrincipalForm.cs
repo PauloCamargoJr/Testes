@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Testes.Infra;
+using Testes.Infra.BancoDeDados;
+using Testes.Infra.BancoDeDados.ModuloMateria;
+using Testes.Infra.BancoDeDados.ModuloQuestao;
 using Testes.Infra.ModuloDisciplina;
 using Testes.Infra.ModuloMateria;
 using Testes.Infra.ModuloQuestao;
@@ -149,9 +152,12 @@ namespace Testes.WinApp
         public void InicializarControladores()
         {
 
-            var repositorioDisciplina = new RepositorioDisciplina(contextoDados);
-            var repositorioMateria = new RepositorioMateria(contextoDados);
-            var repositorioQuestao = new RepositorioQuestao(contextoDados);
+            //var repositorioDisciplina = new RepositorioDisciplina(contextoDados);
+            var repositorioDisciplina = new RepositorioDisciplinaBancoDeDados();
+            //var repositorioMateria = new RepositorioMateria(contextoDados);
+            var repositorioMateria = new RepositorioMateriaBancoDeDados();
+            //var repositorioQuestao = new RepositorioQuestao(contextoDados);
+            var repositorioQuestao = new RepositorioQuestaoBancoDeDados();
             var repositorioTeste = new RepositorioTeste(contextoDados);
 
             controladores = new Dictionary<string, ControladorBase>();

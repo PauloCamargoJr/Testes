@@ -34,7 +34,7 @@ namespace Testes.Dominio.ModuloMateria
     public enum SerieEnum
     {
 
-        Primeira, Segunda
+        Primeira = 1, Segunda = 2
 
     }
 }
