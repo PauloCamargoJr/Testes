@@ -19,6 +19,8 @@ namespace Testes.Infra.BancoDeDados.ModuloQuestao
                "Integrated Security=True;" +
                "Pooling=False";
 
+        #region sqls
+
         private const string sqlInserirQuestao =
             @"INSERT INTO [TBQUESTAO]
                    (
@@ -47,6 +49,15 @@ namespace Testes.Infra.BancoDeDados.ModuloQuestao
                     ); 
                 SELECT SCOPE_IDENTITY()";
 
+        private const string sqlEditarAlternativas = 
+            @"UPDATE [TBALTERNATIVA]	
+		        SET
+			        [ENUNCIADO] = @ENUNCIADO,
+                    [CORRETA] = @CORRETA,
+			        [NUMERO_QUESTAO] = @NUMERO_QUESTAO
+		        WHERE
+			        [NUMERO] = @NUMERO";
+
         private const string sqlSelecionarTodos =
             @"SELECT 
 	            Q.NUMERO,
@@ -70,6 +81,14 @@ namespace Testes.Infra.BancoDeDados.ModuloQuestao
 		        WHERE
                     MT.NUMERO = @NUMERO;";
 
+        private const string sqlEditar =
+           @"UPDATE [TBQUESTAO]	
+		        SET
+			        [ENUNCIADO] = @ENUNCIADO,
+			        [NUMERO_MATERIA] = @NUMERO_MATERIA
+		        WHERE
+			        [NUMERO] = @NUMERO";
+
         private const string sqlExcluir =
            @"DELETE FROM [TBQUESTAO]
 		        WHERE
@@ -90,10 +109,55 @@ namespace Testes.Infra.BancoDeDados.ModuloQuestao
 	            [TBALTERNATIVA]
               WHERE 
 	            [NUMERO_QUESTAO] = @NUMERO_QUESTAO";
+        #endregion
 
-        public ValidationResult Editar(Questao registro)
+        public ValidationResult Editar(Questao questao)
         {
-            throw new NotImplementedException();
+            //var validador = new ValidadorQuestao();
+
+            //var resultadoValidacao = validador.Validate(questao);
+
+            //if (resultadoValidacao.IsValid == false)
+            //    return resultadoValidacao;
+
+            //SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            //SqlCommand comandoEdicao = new SqlCommand(sqlEditar, conexaoComBanco);
+
+            //ConfigurarParametrosQuestao(questao, comandoEdicao);
+
+            //conexaoComBanco.Open();
+            //comandoEdicao.ExecuteNonQuery();
+
+            //conexaoComBanco.Close();
+
+            //return resultadoValidacao;
+
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+
+            SqlCommand comandoEdicao = new SqlCommand(sqlEditar, conexaoComBanco);
+
+            SqlCommand comandoExclusao = new SqlCommand(sqlExcluirAlternativasQuestao, conexaoComBanco);
+
+            ValidadorQuestao validador = new ValidadorQuestao();
+            var result = validador.Validate(questao);
+
+            ConfigurarParametrosQuestao(questao, comandoEdicao);
+
+            conexaoComBanco.Open();
+
+            comandoExclusao.Parameters.AddWithValue("NUMERO_QUESTAO", questao.Numero);
+
+            comandoExclusao.ExecuteNonQuery();
+
+            comandoEdicao.ExecuteNonQuery();
+
+            EditarAlternativas(questao);
+
+            conexaoComBanco.Close();
+
+            return result;
+
         }
 
         public ValidationResult Excluir(Questao questao)
@@ -142,6 +206,28 @@ namespace Testes.Infra.BancoDeDados.ModuloQuestao
 
         }
 
+        public void EditarAlternativas(Questao questaoSelecionada)
+        {
+
+            SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
+            SqlCommand comandoEdicao = new SqlCommand(sqlEditarAlternativas, conexaoComBanco);
+
+            conexaoComBanco.Open();
+
+            foreach (var alternativa in questaoSelecionada.Alternativas)
+            {
+
+                comandoEdicao.Parameters.Clear();
+                ConfigurarParametrosAlternativas(alternativa, comandoEdicao, questaoSelecionada);
+
+                comandoEdicao.ExecuteNonQuery();
+
+            }
+
+            conexaoComBanco.Close();
+
+        }
+
         public void AdicionarAlternativas(Questao questaoSelecionada)
         {
 
@@ -163,7 +249,7 @@ namespace Testes.Infra.BancoDeDados.ModuloQuestao
 
             conexaoComBanco.Close();
 
-            //Editar(questaoSelecionada);
+            Editar(questaoSelecionada);
         }
 
         private void ConfigurarParametrosQuestao(Questao questao, SqlCommand comandoInsercao)
@@ -196,7 +282,7 @@ namespace Testes.Infra.BancoDeDados.ModuloQuestao
             conexaoComBanco.Open();
             SqlDataReader leitorQuestao = comandoSelecao.ExecuteReader();
 
-            Questao questao = null;
+            Questao questao = new Questao();
 
             if (leitorQuestao.Read())
                 questao = ConverterParaQuestao(leitorQuestao);
@@ -250,7 +336,6 @@ namespace Testes.Infra.BancoDeDados.ModuloQuestao
                     Nome = nomeMateria
 
                 }
-                
             };
 
             return questao;
@@ -262,7 +347,7 @@ namespace Testes.Infra.BancoDeDados.ModuloQuestao
 
             SqlCommand comandoExclusao = new SqlCommand(sqlExcluirAlternativasQuestao, conexaoComBanco);
 
-            comandoExclusao.Parameters.AddWithValue("TAREFA_NUMERO", questao.Numero);
+            comandoExclusao.Parameters.AddWithValue("NUMERO_QUESTAO", questao.Numero);
 
             conexaoComBanco.Open();
             comandoExclusao.ExecuteNonQuery();
@@ -308,6 +393,5 @@ namespace Testes.Infra.BancoDeDados.ModuloQuestao
 
             return alternativa;
         }
-
     }
 }

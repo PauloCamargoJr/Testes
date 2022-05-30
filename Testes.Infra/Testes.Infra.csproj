@@ -58,6 +58,7 @@
     <Compile Include="BancoDeDados\ModuloDisciplina\RepositorioDisciplinaBancoDeDados.cs" />
     <Compile Include="BancoDeDados\ModuloMateria\RepositorioMateriaBancoDeDados.cs" />
     <Compile Include="BancoDeDados\ModuloQuestao\RepositorioQuestaoBancoDeDados.cs" />
+    <Compile Include="BancoDeDados\ModuloTeste\RepositorioTesteBancoDeDados.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Compartilhado\DataContext.cs" />
     <Compile Include="ModuloDisciplina\RepositorioDisciplina.cs" />
@@ -94,8 +95,6 @@
       <Name>Testes.Dominio</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BancoDeDados\ModuloTeste\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
